@@ -1,36 +1,73 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.12.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.12.0/firebase-auth.js"></script>
-    <!-- <script defer src="/__/firebase/7.12.0/firebase-database.js"></script> -->
-    <!-- <script defer src="/__/firebase/7.12.0/firebase-messaging.js"></script> -->
-    <!-- <script defer src="/__/firebase/7.12.0/firebase-storage.js"></script> -->
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="container">
-      <h1>Login in</h1>
-      <input id="txtEmail" type="email" placeholder="Email">
-      <input id="txtPassword" type="password" placeholder="Password">
-      <button id="btnLogin" class="btn btn-action">
-        Log in
-      </button>
-      <button id="btnSignUp" class="btn btn-secondary">
-        Sign Up
-      </button>
-      <button id="btnLogout" class="btn btn-action hide">
-        Log out
-      </button>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Firebase Hosting</title>
+
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/7.12.0/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/7.12.0/firebase-auth.js"></script>
+  <script defer src="/__/firebase/7.12.0/firebase-database.js"></script>
+  <!-- <script defer src="/__/firebase/7.12.0/firebase-messaging.js"></script> -->
+  <!-- <script defer src="/__/firebase/7.12.0/firebase-storage.js"></script> -->
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="heading">App</h1>
+      <div class="headerBtns">
+        <button id="btnAddLinkMenu" class="btn hide" onclick="document.querySelector('.backdrop.add-link').classList.remove('hide')">Add
+          link</button>
+        <button id="btnLoginMenu" class="btn" onclick="document.querySelector('.backdrop.login').classList.remove('hide')">Login</button>
+      </div>
+    </header>
+    <div class="backdrop login hide"
+      onclick="if(event.path[0].className===this.className||event.path[0].classList.contains('btn-exit'))this.classList.add('hide')">
+      <div class="loginContainer">
+        <h2>Login</h2>
+        <button class="btn btn-action btn-exit">x</button>
+        <input id="txtEmail" class="txt-input" type="email" placeholder="Email">
+        <input id="txtPassword" class="txt-input" type="password" placeholder="Password">
+        <button id="btnLogin" class="btn btn-action">
+          Log in
+        </button>
+        <button id="btnSignUp" class="btn btn-secondary">
+          Sign Up
+        </button>
+        <button id="btnLogout" class="btn btn-action hide">
+          Log out
+        </button>
+      </div>
     </div>
-    <script src="app.js"></script>
-  </body>
+    <div class="backdrop add-link hide"
+      onclick="if(event.path[0].className===this.className||event.path[0].classList.contains('btn-exit'))this.classList.add('hide')">
+      <div class="loginContainer">
+        <h2>Login</h2>
+        <button class="btn btn-action btn-exit">x</button>
+        <select id="lists">
+          <option value="">--Please choose an option--</option>
+          <option value="list">List</option>
+        </select>
+        <input id="txtLink" class="txt-input" type="text" placeholder="Link">
+        <button id="btnAddLink" class="btn btn-action" onclick="document.getElementById('txtLink').value&&document.getElementById('lists')?document.querySelector('.add-link').classList.add('hide'):alert('Fill all fields')">
+          Add link
+        </button>
+      </div>
+    </div>
+    <main class="main">
+      <h3>List</h3>
+      <ul id="list">
+      </ul>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+
 </html>
