@@ -24,9 +24,9 @@
     <header class="header">
       <h1 class="heading">App</h1>
       <div class="headerBtns">
-        <button id="btnAddLinkMenu" class="btn hide" onclick="document.querySelector('.backdrop.add-link').classList.remove('hide')">Add
+        <button id="btnAddLinkMenu" class="btn hide btn-secondary" onclick="document.querySelector('.backdrop.add-link').classList.remove('hide')">Add
           link</button>
-        <button id="btnLoginMenu" class="btn" onclick="document.querySelector('.backdrop.login').classList.remove('hide')">Login</button>
+        <button id="btnLoginMenu" class="btn btn-secondary" onclick="document.querySelector('.backdrop.login').classList.remove('hide')">Login</button>
       </div>
     </header>
     <div class="backdrop login hide"
@@ -50,14 +50,13 @@
     <div class="backdrop add-link hide"
       onclick="if(event.path[0].className===this.className||event.path[0].classList.contains('btn-exit'))this.classList.add('hide')">
       <div class="loginContainer">
-        <h2>Login</h2>
+        <h2>Add link</h2>
         <button class="btn btn-action btn-exit">x</button>
-        <select id="lists">
+        <select id="selectLists">
           <option value="">--Please choose an option--</option>
-          <option value="list">List</option>
         </select>
         <input id="txtLink" class="txt-input" type="text" placeholder="Link">
-        <button id="btnAddLink" class="btn btn-action" onclick="document.getElementById('txtLink').value&&document.getElementById('lists')?document.querySelector('.add-link').classList.add('hide'):alert('Fill all fields')">
+        <button id="btnAddLink" class="btn btn-action">
           Add link
         </button>
       </div>

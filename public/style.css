@@ -100,3 +100,14 @@ h3 {
 .list-container {
     margin: 0 0 1rem 0;
 }
+#ulLists li {
+    margin-bottom: .5rem;
+}
+.delete {
+    padding: 0.1rem 0.4rem;
+    margin-left:1rem;
+    display: none;
+}
+.loggedIn .delete{
+    display: inline-block;
+}
