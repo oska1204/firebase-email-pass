@@ -49,24 +49,46 @@ document.addEventListener('DOMContentLoaded', e => {
         }
     })
 
-    const ulList = document.getElementById('list')
-    const dbRefObject = firebase.database().ref().child('lists')
-    console.log(dbRefObject)
-    const dbRefList = dbRefObject.child('list')
-    dbRefList.on('child_added', snap => {
-        const li = document.createElement('li')
-        li.innerHTML = format(snap.val())
-        li.id = snap.key
-        ulList.appendChild(li)
+    const ulLists = document.getElementById('ulLists')
+    
+    const db = firebase.firestore()
+
+    const listNames = ['list1','list2'] // TODO: Get Array from server
+
+    listNames.forEach(listName => {
+        newList(listName)
     })
-    dbRefList.on('child_changed', snap => {
-        const liChanged = document.getElementById(snap.key)
-        liChanged.innerHTML = format(snap.val())
-    })
-    dbRefList.on('child_removed', snap => {
-        const liToRemove = document.getElementById(snap.key)
-        liToRemove.parentNode.removeChild(liToRemove)
-    })
+
+    function newList(listName) {
+        const listContainer = document.createElement('div')
+
+        listContainer.classList.add('list-container')
+
+        const h3Name = document.createElement('h3')
+
+        h3Name.innerText = listName
+
+        listContainer.appendChild(h3Name)
+
+        const ulList = document.createElement('ul')
+
+        const list = db.collection('lists').doc(listName)
+    
+        list.onSnapshot(doc => {
+            ulList.innerHTML = ''
+            const data = doc.data()
+            for (const link in data) {
+                const li = document.createElement('li')
+                li.innerHTML = format(data[link])
+                ulList.appendChild(li)
+            }
+        })
+
+        listContainer.appendChild(ulList)
+
+        ulLists.appendChild(listContainer)
+    }
+    
     function format(link) {
         return `<a href="${link}" target="_blank">${link}</a>`
     }

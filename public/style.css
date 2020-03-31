@@ -31,7 +31,6 @@ h3 {
 }
 .container {
     margin: 0 auto;
-    min-height: 59vh; /*test*/
     max-width: 100rem;
     background-color: hsl(0, 0%, 96%);
     box-shadow: 0 3px 5px hsla(240, 75%, 10%, 0.5);
@@ -97,4 +96,7 @@ h3 {
 }
 .main {
     padding: 1rem 1.6rem;
+}
+.list-container {
+    margin: 0 0 1rem 0;
 }
