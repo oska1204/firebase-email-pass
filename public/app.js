@@ -58,11 +58,12 @@ document.addEventListener('DOMContentLoaded', e => {
 
     const db = firebase.firestore()
 
-    const listNames = ['list1', 'list2'] // TODO: Get Array from server
-
-    listNames.forEach(listName => {
-        newList(listName)
-    })
+    db.collection('lists').get()
+        .then(collection => {
+            collection.docs.forEach(doc => {
+                newList(doc.id)
+            })
+        })
 
     function newList(listName) {
         const optionSelect = document.createElement('option')
@@ -115,7 +116,7 @@ document.addEventListener('DOMContentLoaded', e => {
         list.update(obj)
     }
     function removeLink(e) {
-        const answer = window.prompt('Do you want to delete the link? \nType "delete" to confirm','')
+        const answer = window.prompt('Do you want to delete the link? \nType "delete" to confirm', '')
         if (answer !== 'delete') return
         const list = db.collection('lists').doc(e.target.parentNode.parentNode.dataset.listName)
         const obj = {}
