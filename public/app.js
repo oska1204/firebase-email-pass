@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', e => {
         const obj = {}
         obj[txtLinkValue.replace(/[~*/[\]\.]/g, '|')] = txtLinkValue
         list.update(obj)
+            .catch(alert)
     }
     function removeLink(e) {
         const answer = window.prompt('Do you want to delete the link? \nType "delete" to confirm', '')
@@ -122,5 +123,6 @@ document.addEventListener('DOMContentLoaded', e => {
         const obj = {}
         obj[e.target.parentNode.dataset.listItem] = firebase.firestore.FieldValue.delete()
         list.update(obj)
+            .catch(alert)
     }
 })
